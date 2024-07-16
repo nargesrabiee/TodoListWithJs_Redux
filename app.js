@@ -65,3 +65,13 @@ addBtn.addEventListener('click', (event) => {
     addInput.value = ''
     generateTodoLi(allTodos)
 })
+
+addInput.addEventListener('keypress', event => {
+    if (event.keyCode === 13) {
+        const newTodoTitle = event.target.value;
+        store.dispatch(addTodoAction(newTodoTitle))
+        const allTodos = store.getState()
+        event.target.value = ''
+        generateTodoLi(allTodos)
+    }
+})
