@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <!-- External Css File -->
+    <link rel="stylesheet" href="./style.css">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <div class="pro-container">
+        <section class="head-section">
+            <nav class="container">
+                <div class="title">
+                    <img class="logo" src="./icons/todo.png" alt="logo">
+                    <h1>T<span>o</span>do <span>L</span>ist</h1>
+                </div>
+
+                <div class="search-box">
+                    <div class="input-container">
+                        <input type="text" placeholder="Search Your Todo ???">
+                        <img class="icon-btn search-btn" src="./icons/search.png" alt="icon-btn">
+                    </div>
+                </div>
+            </nav>
+
+            <div class="status-container">
+                <div class="status">
+                    <img src="./icons/success.png" alt="status image">
+                    <p class="text">
+                        0 <span>/</span> 2 is Done <span>.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="input-btns-container">
+                <div class="input-container">
+                    <input type="text" placeholder="Add New Todo ...">
+                    <img class="icon-btn add-btn" src="./icons/add.png" alt="icon-btn">
+                </div>
+            </div>
+        </section>
+        <section class="body-section">
+            <ul class="todos-container">
+                <!-- <li class="todo-container">
+                    <p class="todo-title">learn redux</p>
+                    <div class="todo-btns">
+                        <img class="icon-btn delete-btn" src="./icons/delete.png" alt="delete btn">
+                        <img class="icon-btn incomplete-btn" src="./icons/incomplete.png" alt="incomplete btn">
+                    </div>
+                    <img class="done-img" src="./icons/done.png" alt="done todo">
+                </li> -->
+
+                <!-- <li class="todo-container todo-done">
+                    <p class="todo-title">learn JS</p>
+                    <div class="todo-btns">
+                        <img class="icon-btn delete-btn" src="./icons/delete.png" alt="delete btn">
+                        <img class="icon-btn incomplete-btn" src="./icons/complete.png" alt="incomplete btn">
+                    </div>
+                    <img class="done-img active" src="./icons/done.png" alt="done todo">
+                </li> -->
+            </ul>
+
+        </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
