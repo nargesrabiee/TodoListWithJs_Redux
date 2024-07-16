@@ -10,8 +10,6 @@ const searchInput = document.querySelector('.search-input')
 const todosContainerElem = document.querySelector('.todos-container')
 const addBtn = document.querySelector('.add-btn')
 const searchBtn = document.querySelector('.search-btn')
-const deleteBtn = document.querySelector('.delete-btn')
-const completeBtn = document.querySelector('.incomplete-btn')
 
 // Declare Reducer
 function todoReducer(state = [], action) {
@@ -28,7 +26,7 @@ function todoReducer(state = [], action) {
         }
         case removeTodo: {
             const copyState = [...state]
-            const newState = copyState.filter(todo=>{
+            const newState = copyState.filter(todo => {
                 return todo.id !== action.id
             })
             return newState
@@ -36,7 +34,7 @@ function todoReducer(state = [], action) {
         case doTodo: {
             const newState = [...state]
             newState.some(todo => {
-                if(todo.id === action.id){
+                if (todo.id === action.id) {
                     todo.isComplete = !todo.isComplete
                 }
             })
@@ -71,6 +69,38 @@ addInput.addEventListener('keypress', event => {
     }
 })
 
+searchBtn.addEventListener('click', event => {
+    const searchInputValue = searchInput.value.toLowerCase()
+    const allTodos = store.getState()
+
+    const filteredTodos = []
+    allTodos.forEach(todo => {
+        const todoTitle = todo.title.toLowerCase()
+        if (todoTitle.includes(searchInputValue)) {
+            filteredTodos.push(todo)
+        }
+    })
+    searchInput.value = ''
+    generateTodoLi(filteredTodos)
+})
+
+searchInput.addEventListener('keypress', event => {
+    if (event.keyCode === 13) {
+        const searchInputValue = searchInput.value.toLowerCase()
+        const allTodos = store.getState()
+
+        const filteredTodos = []
+        allTodos.forEach(todo => {
+            const todoTitle = todo.title.toLowerCase()
+            if (todoTitle.includes(searchInputValue)) {
+                filteredTodos.push(todo)
+            }
+        })
+        searchInput.value = ''
+        generateTodoLi(filteredTodos)
+    }
+})
+
 // Functions
 function generateTodoLi(todos) {
     todosContainerElem.innerHTML = ''
@@ -101,7 +131,7 @@ function generateTodoLi(todos) {
 function completeTodoHandler(todoID) {
     store.dispatch(doTodoAction(todoID))
     const allTodos = store.getState()
-    generateTodoLi(allTodos)  
+    generateTodoLi(allTodos)
 }
 
 function removeTodoHandler(todoID) {
