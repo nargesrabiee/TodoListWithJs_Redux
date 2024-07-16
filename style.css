@@ -77,6 +77,10 @@ nav span {
     font-size: 20px;
 }
 
+.status .text.hidden {
+    display: none;
+}
+
 .status span {
     color: var(--main-color);
 }

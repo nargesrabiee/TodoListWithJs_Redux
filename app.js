@@ -7,9 +7,10 @@ window.removeTodoHandler = removeTodoHandler;
 // DOM Elem
 const addInput = document.querySelector('.add-input')
 const searchInput = document.querySelector('.search-input')
-const todosContainerElem = document.querySelector('.todos-container')
 const addBtn = document.querySelector('.add-btn')
 const searchBtn = document.querySelector('.search-btn')
+const todosContainerElem = document.querySelector('.todos-container')
+const statusContainerElem = document.querySelector('.status-container')
 
 // Declare Reducer
 function todoReducer(state = [], action) {
@@ -50,6 +51,10 @@ function todoReducer(state = [], action) {
 const store = Redux.createStore(todoReducer)
 
 // Declare Events
+window.addEventListener('load', () => {
+    statusHandler()
+})
+
 addBtn.addEventListener('click', event => {
     event.preventDefault()
     const newTodoTitle = addInput.value;
@@ -57,6 +62,7 @@ addBtn.addEventListener('click', event => {
     const allTodos = store.getState()
     addInput.value = ''
     generateTodoLi(allTodos)
+    statusHandler()
 })
 
 addInput.addEventListener('keypress', event => {
@@ -66,6 +72,7 @@ addInput.addEventListener('keypress', event => {
         const allTodos = store.getState()
         event.target.value = ''
         generateTodoLi(allTodos)
+        statusHandler()
     }
 })
 
@@ -132,10 +139,38 @@ function completeTodoHandler(todoID) {
     store.dispatch(doTodoAction(todoID))
     const allTodos = store.getState()
     generateTodoLi(allTodos)
+    statusHandler()
 }
 
 function removeTodoHandler(todoID) {
     store.dispatch(removeTodoAction(todoID))
     const allTodos = store.getState()
     generateTodoLi(allTodos)
+    statusHandler()
+}
+
+function statusHandler() {
+    statusContainerElem.innerHTML = ''
+
+    const allTodos = store.getState()
+    const todosCount = allTodos.length
+    const todosDone = []
+    allTodos.forEach(todo => {
+        if (todo.isComplete) {
+            todosDone.push(todo)
+        }
+    })
+
+    const todosDoneCount = todosDone.length
+    statusContainerElem.insertAdjacentHTML('beforeend', `
+        <div class="status">
+            <img src="${todosCount ? './icons/success.png' : './icons/notodo.png'}" alt="status image">
+            <p class="text ${!todosCount && 'hidden'}">
+                ${todosDoneCount} <span>/</span> ${todosCount} is Done <span>.</span>
+            </p>
+            <p class="text ${todosCount && 'hidden'}">
+                You don't have todo <span>.</span>
+            </p>
+        </div>`
+    )
 }
