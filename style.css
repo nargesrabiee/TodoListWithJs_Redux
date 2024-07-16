@@ -58,7 +58,6 @@ nav span {
 /* Status Styles */
 .status {
     display: flex;
-    width: fit-content;
     margin: 10px auto 40px;
     align-items: center;
     padding: 10px;
@@ -90,7 +89,7 @@ nav span {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 }
 
 .input-container {
@@ -193,3 +192,72 @@ nav span {
 }
 
 /********** MEDIA QUERIES **********/
+@media screen and (max-width: 840px) {
+    .status {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        margin: 0 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    nav .title {
+        font-size: 20px;
+    }
+
+    .logo {
+        width: 40px;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .container {
+        margin: 0 10px;
+
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .todos-container{
+        padding: 30px;
+    }
+
+    .todo-container {
+        width: 100%;
+        font-size: 15px;
+        padding: 15px 15px 15px 25px;
+    }
+
+    .todo-container .done-img {
+        width: 45px;
+        top: -2px;
+        left: -25px;
+    }
+
+    .input-container {
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .input-container input {
+        width: 100%;
+        display: inline-flex;
+    }
+
+    .status {
+        width: 100%;
+        margin: 10px auto 40px;
+    }
+
+    .status img {
+        width: 50px;
+    }
+}
